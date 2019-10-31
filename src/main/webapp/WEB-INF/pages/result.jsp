@@ -32,16 +32,18 @@
 						<c:if test="${!empty vhclDtls}">
 							<tr>
 								<td>&nbsp;Vehicle Type&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.vtype}" disabled></td>
+								<td><label>:&nbsp;${vhclDtls.vtype}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;mfgYear&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.mfgYear}" disabled></td>
+								<td>&nbsp;MFG Year&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.mfgYear}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;brandName&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.brandName}"
-									disabled></td>
+								<td>&nbsp;Brand Name&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.brandName}</label></td>
+							</tr>
+							<tr>
+								<td>&nbsp;<a href="#"><button type="button" style="background-color: aqua;">Edit</button></a></td>
 							</tr>
 						</c:if>
 					</table>
@@ -54,89 +56,78 @@
 					<table>
 						<c:if test="${!empty vhclDtls}">
 							<tr>
-								<td>&nbsp;first_name&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.owner.first_name}"
-									disabled></td>
+								<td>&nbsp;First Name&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.owner.first_name}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;last_name&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.owner.last_name}"
-									disabled></td>
+								<td>&nbsp;Last Name&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.owner.last_name}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;gender&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.owner.gender}"
-									disabled></td>
+								<td>&nbsp;Gender&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.owner.gender}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;dob&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.owner.dob}"
-									disabled></td>
+								<td>&nbsp;Date of Birth&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.owner.dob}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;email&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.owner.email}"
-									disabled></td>
+								<td>&nbsp;Email&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.owner.email}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;phno&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.owner.phno}"
-									disabled></td>
+								<td>&nbsp;Phone no&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.owner.phno}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;ssn&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.owner.ssn}"
-									disabled></td>
+								<td>&nbsp;SSN&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.owner.ssn}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;createdDate&nbsp;</td>
-								<td><input type="text"
-									value="${vhclDtls.owner.createdDate}" disabled></td>
+								<td>&nbsp;Created Date&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.owner.createdDate}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;updateDate&nbsp;</td>
-								<td><input type="text" value="${vhclDtls.owner.updateDate}"
-									disabled></td>
+								<td>&nbsp;Update Date&nbsp;</td>
+								<td><label>:&nbsp;${vhclDtls.owner.updateDate}</label></td>
 							</tr>
-
+							<tr>
+								<td>&nbsp;<a href="#"><button type="button" style="background-color: aqua;">Edit</button></a></td>
+							</tr>
 						</c:if>
 					</table>
 				</div>
 			</td>
-
 			<td>
 				<div>
 					<table>
 						<c:if test="${!empty vhclOnrAddrDtls}">
 							<tr>
-								<td>&nbsp;hno&nbsp;</td>
-								<td><input type="text" value="${vhclOnrAddrDtls.HNo}"
-									disabled></td>
+								<td>&nbsp;House no&nbsp;</td>
+								<td><label>:&nbsp;${vhclOnrAddrDtls.HNo}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;streetName&nbsp;</td>
-								<td><input type="text"
-									value="${vhclOnrAddrDtls.streetName}" disabled></td>
+								<td>&nbsp;Street Name&nbsp;</td>
+								<td><label>:&nbsp;${vhclOnrAddrDtls.streetName}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;city&nbsp;</td>
-								<td><input type="text" value="${vhclOnrAddrDtls.city}"
-									disabled></td>
+								<td>&nbsp;City&nbsp;</td>
+								<td><label>:&nbsp;${vhclOnrAddrDtls.city}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;zipCode&nbsp;</td>
-								<td><input type="text" value="${vhclOnrAddrDtls.zipCode}"
-									disabled></td>
+								<td>&nbsp;Zip. Code&nbsp;</td>
+								<td><label>:&nbsp;${vhclOnrAddrDtls.zipCode}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;createdDate&nbsp;</td>
-								<td><input type="text"
-									value="${vhclOnrAddrDtls.createdDate}" disabled></td>
+								<td>&nbsp;Created Date&nbsp;</td>
+								<td><label>:&nbsp;${vhclOnrAddrDtls.createdDate}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;updateDate&nbsp;</td>
-								<td><input type="text"
-									value="${vhclOnrAddrDtls.updateDate}" disabled></td>
+								<td>&nbsp;Update Date&nbsp;</td>
+								<td><label>:&nbsp;${vhclOnrAddrDtls.updateDate}</label></td>
+							</tr>
+							<tr>
+								<td>&nbsp;<a href="#"><button type="button" style="background-color: aqua;">Edit</button></a></td>
 							</tr>
 						</c:if>
 					</table>
@@ -147,29 +138,23 @@
 					<table>
 						<c:if test="${!empty vhclRegdDtls}">
 							<tr>
-								<td>&nbsp;regdDate&nbsp;</td>
-								<td><input type="text" value="${vhclRegdDtls.regdDate}"
-									disabled></td>
+								<td>&nbsp;Regd. Date&nbsp;</td>
+								<td><label>:&nbsp;${vhclRegdDtls.regdDate}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;regCenter&nbsp;</td>
-								<td><input type="text" value="${vhclRegdDtls.regCenter}"
-									disabled></td>
+								<td>&nbsp;Regd. Center&nbsp;</td>
+								<td><label>:&nbsp;${vhclRegdDtls.regCenter}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;createdDate&nbsp;</td>
-								<td><input type="text" value="${vhclRegdDtls.createdDate}"
-									disabled></td>
+								<td>&nbsp;Created Date&nbsp;</td>
+								<td><label>:&nbsp;${vhclRegdDtls.createdDate}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;updateDate&nbsp;</td>
-								<td><input type="text" value="${vhclRegdDtls.updateDate}"
-									disabled></td>
+								<td>&nbsp;Update Date&nbsp;</td>
+								<td><label>:&nbsp;${vhclRegdDtls.updateDate}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;vehiceRegdNum&nbsp;</td>
-								<td><input type="text"
-									value="${vhclRegdDtls.vehiceRegdNum}" disabled></td>
+								<td>&nbsp;<a href="#"><button type="button" style="background-color: aqua;">Edit</button></a></td>
 							</tr>
 						</c:if>
 					</table>
@@ -177,7 +162,17 @@
 			</td>
 		</tr>
 	</table>
-	<h3>Get all Vehicle-Owner Information</h3>
-	<a href="showDetails"><button type="button" >Show Details</button></a>
+	<br>
+	<h3>Click on register to get vehicle registration number.</h3>
+	<a href="showDetails?vRId=${vhclRegdDtls.regdId}"><button
+			type="button" style="background-color:lime;">Register</button></a>
+	<br>
+	<h3>
+		<b style="color: blue;">${success}&nbsp;</b>
+	</h3>
+	<h3>
+		<b>Vehicle Registration Number is&nbsp;:<label style="color: red;">&nbsp;${vhclRegdNum}</label></b>
+	</h3>
+
 </body>
 </html>

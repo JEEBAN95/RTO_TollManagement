@@ -19,10 +19,6 @@
 				<td>&nbsp;Regd_Center&nbsp;</td>
 				<td><form:input path="regCenter" /></td>
 			</tr>
-			<tr>
-				<td>&nbsp;Vehice_Regd_Num&nbsp;</td>
-				<td><form:input path="vehiceRegdNum" /></td>
-			</tr>
 			<tr><td ><Button type="submit">Submit</Button>
 			<a href="vhclDtlsUpd?ownerID=${ownerID}"><button type="button">previous</button></a>
 				</td></tr>

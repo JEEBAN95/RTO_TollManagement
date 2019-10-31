@@ -41,7 +41,7 @@ public class VehicleOwnerDetlsEntity implements Serializable{
 	@Column(name="PHNO")
 	private long  phno;
 	@Column(name="DOB")
-	private Date dob;
+	private Date dob; 
 	@Column(name="SSN")
 	private long ssn;	//adhar no
 	

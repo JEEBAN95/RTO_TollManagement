@@ -46,44 +46,51 @@ public class VehicleOwnerController {
 
 		// use service
 		int id = rtoService.insertVehicleOwner(vhclOnrRegdDto);
-		return "redirect:/vhclOnrAddReg?ownerID="+id;
+		return "redirect:/vhclOnrAddReg?ownerID=" + id;
+	}
+
+	@GetMapping("/updateVhclOnr")
+	public String updateVehicleOwnerShowFormWithData(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd,
+			@RequestParam("ownerID") int id, Model model) {
+
+		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
+		// use service
+		BeanUtils.copyProperties(rtoService.getOwnerByID(id), vhclOnrRegdDto);
+		BeanUtils.copyProperties(vhclOnrRegdDto, vhclOnrRegdCmd);
+		model.addAttribute("vOwnerDtlsModelCmd", vhclOnrRegdCmd);
+		model.addAttribute("ownerID", id);
+		return "vehicle_owner_update";
+	}
+
+	@PostMapping("/vhclOnrRegdUpdt")
+	public String updateVehicleOwner(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd,
+			@RequestParam("ownerID") int id) {
+
+		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
+		BeanUtils.copyProperties(vhclOnrRegdCmd, vhclOnrRegdDto);
+		// use service
+		rtoService.updateOwner(vhclOnrRegdDto, id);
+		return "redirect:/vhclOnrAddReg?ownerID=" + id;
 	}
 
 	@GetMapping("/result")
-	public String showResult(Model model, @RequestParam("ownerID") int id) {
-		
+	public String showResult(Model model, @RequestParam("ownerID") int id, @RequestParam("vRId") int vhclId) {
+
 		// use service
 		VehicleDetlsEntity vhclDtls = rtoService.getVehicleDtlsBy(id);
 		VehicleOwnerAdderssDetlsEnitity vhclOnrAddrDtls = rtoService.getVehicleOnrAddrDtlsBy(id);
 		VehicleRegdDetlsEntity vhclRegdDtls = rtoService.getVehicleRegdDtlsBy(id);
-		
 		model.addAttribute("vhclDtls", vhclDtls);
-		model.addAttribute("vhclOnrAddrDtls",vhclOnrAddrDtls);
+		model.addAttribute("vhclOnrAddrDtls", vhclOnrAddrDtls);
 		model.addAttribute("vhclRegdDtls", vhclRegdDtls);
-		model.addAttribute("ownerID",id);
+		model.addAttribute("ownerID", id);
+
+		if (vhclId != 0) {
+			model.addAttribute("success", "Successfully Registered");
+			model.addAttribute("vhclRegdNum", rtoService.getVehicleRegdDtlsByVhclID(vhclId).getVehiceRegdNum());
+			return "result";
+		}
 		return "result";
 	}
-	
-	@GetMapping("/updateVhclOnr")
-	public String updateVehicleOwnerShowFormWithData(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd,
-			@RequestParam("ownerID")int id, Model model) {
-		
-		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
-		//use service
-		BeanUtils.copyProperties(rtoService.getOwnerByID(id), vhclOnrRegdDto);
-		BeanUtils.copyProperties(vhclOnrRegdDto, vhclOnrRegdCmd);
-		model.addAttribute("vOwnerDtlsModelCmd",vhclOnrRegdCmd);
-		model.addAttribute("ownerID",id);
-		return "vehicle_owner_update";
-	}
-	
-	@PostMapping("/vhclOnrRegdUpdt")
-	public String updateVehicleOwner(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd, @RequestParam("ownerID")int id) {
-		
-		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
-		BeanUtils.copyProperties(vhclOnrRegdCmd, vhclOnrRegdDto);
-		//use service
-		rtoService.updateOwner(vhclOnrRegdDto,id);
-		return "redirect:/vhclOnrAddReg?ownerID="+id;
-	}
+
 }

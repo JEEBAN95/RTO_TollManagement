@@ -40,4 +40,6 @@ public interface RtoService {
 	public List<Integer> getAllOwnersIDs();
 	
 	public List<String>getAllOwnersNames();
+
+	public VehicleRegdDetlsEntity getVehicleRegdDtlsByVhclID(int vhclId);
 }

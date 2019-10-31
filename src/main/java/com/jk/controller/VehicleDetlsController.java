@@ -57,6 +57,7 @@ public class VehicleDetlsController {
 		model.addAttribute("ownerID",id);
 		return "vehicle-dtlsUpdate";
 	}
+	
 	@PostMapping("/vhclInfoUpd")
 	public String updateVhclDtls(@ModelAttribute VehicleDetlsCmd vhclDtlsCmd,
 			@RequestParam("ownerID") int id) {

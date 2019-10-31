@@ -16,7 +16,7 @@ import com.jk.entity.VehicleRegdDetlsEntity;
 import com.jk.service.RtoService;
 
 @Controller
-@SessionAttributes({ "vRegdModelCmd" })
+@SessionAttributes({ "vRegdModelCmd"})
 public class VehicleRegDetlsController {
 
 	@Autowired
@@ -49,7 +49,7 @@ public class VehicleRegDetlsController {
 		BeanUtils.copyProperties(vhclRegdCmd, vhclRegdDto);
 		// use service
 		rtoService.insertVehicleRegDetails(vhclRegdDto, id);
-		return "redirect:/result?ownerID="+id;
+		return "redirect:/result?ownerID="+id+"&vRId="+0;
 	}
 	@GetMapping("/vhclRegUpdate")
 	public String updateVhclRegdFormData(@RequestParam("ownerID") int id,
@@ -70,6 +70,13 @@ public class VehicleRegDetlsController {
 		vhclRegdDto = new VehicleRegdDetlsDTO();
 		BeanUtils.copyProperties(vhclRegdCmd, vhclRegdDto);
 		rtoService.updateVhclRegdDtls(vhclRegdDto,id);
-		return "redirect:/result?ownerID="+id;
+		return "redirect:/result?ownerID="+id+"&vRId="+0;
+	}
+	
+	@GetMapping("/showDetails")
+	public String showSuccess(@RequestParam("vRId") int vhclId,
+			@ModelAttribute VehicleRegdDetlsCmd vhclRegdCmd, Model  model) {
+		int id = rtoService.getVehicleRegdDtlsByVhclID(vhclId).getOwner().getPid();
+		return "redirect:/result?ownerID="+id+"&vRId="+vhclId;
 	}
 }

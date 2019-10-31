@@ -44,7 +44,7 @@ public class VehicleRegdDetlsEntity implements Serializable{
 	@UpdateTimestamp
 	private Timestamp updateDate;
 	@Column(name="VEHICLE_REGD_NUM")
-	private long vehiceRegdNum;
+	private String vehiceRegdNum;
 	
 	@OneToOne(orphanRemoval = true)
 	@Cascade(CascadeType.ALL)
