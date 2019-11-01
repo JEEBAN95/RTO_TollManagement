@@ -10,7 +10,7 @@
 <body>
 	<h1>Vehicle Registration Form</h1>
 	<table>
-		<form:form action="vhclRegdUpdate?ownerID=${ownerID}"
+		<form:form action="vhclRegd?ownerID=${ownerID}"
 			modelAttribute="vRegdModelCmd">
 			<tr>
 				<td>&nbsp;Regd_Date&nbsp;</td>

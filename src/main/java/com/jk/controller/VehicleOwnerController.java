@@ -1,8 +1,5 @@
 package com.jk.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,30 +27,41 @@ public class VehicleOwnerController {
 	private VehicleOwnerDetlsCmd vhclOnrRegdCmd;
 	private VehicleOwnerDetlsDTO vhclOnrRegdDto;
 
+	// display homePage
+		@GetMapping("/home")
+		public String showHome() {
+			
+			return "home";
+		}// showHome	
+	
 	// display owner registration form
 	@GetMapping("/register")
-	public String showOwnerRegistrationForm(Model model) {
+	public String showOwnerRegdForm(Model model) {
+		
 		vhclOnrRegdCmd = new VehicleOwnerDetlsCmd();
 		model.addAttribute("vOwnerDtlsModelCmd", vhclOnrRegdCmd);
 		return "vehicle_owner_regd";
-	}
+	}//showOwnerRegdForm
 
 	// get owner data
 	@PostMapping("/vhclOnrRegister")
-	public String getOwnerRegistrationFormData(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd) {
+	public String saveOwnerRegdFormData(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd) {
+		
 		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
 		BeanUtils.copyProperties(vhclOnrRegdCmd, vhclOnrRegdDto);
 
 		// use service
 		int id = rtoService.insertVehicleOwner(vhclOnrRegdDto);
+		//redirect to next form
 		return "redirect:/vhclOnrAddReg?ownerID=" + id;
-	}
+	}//saveOwnerRegdFormData
 
 	@GetMapping("/updateVhclOnr")
 	public String updateVehicleOwnerShowFormWithData(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd,
 			@RequestParam("ownerID") int id, Model model) {
 
 		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
+		
 		// use service
 		BeanUtils.copyProperties(rtoService.getOwnerByID(id), vhclOnrRegdDto);
 		BeanUtils.copyProperties(vhclOnrRegdDto, vhclOnrRegdCmd);

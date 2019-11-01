@@ -11,11 +11,10 @@ import lombok.ToString;
 @Setter
 @ToString
 public class VehicleRegdDetlsDTO implements Serializable{
-
 	private static final long serialVersionUID = -3201751647597457644L;
 	
 	private Date regdDate;
 	private String regCenter;
-	private long vehiceRegdNum;
+	private String vehiceRegdNum;
 	
 }

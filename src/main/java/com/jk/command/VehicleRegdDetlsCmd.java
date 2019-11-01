@@ -13,6 +13,6 @@ public class VehicleRegdDetlsCmd {
 
 	private Date regdDate;
 	private String regCenter;
-	private long vehiceRegdNum;
+	private String vehiceRegdNum;
 	
 }

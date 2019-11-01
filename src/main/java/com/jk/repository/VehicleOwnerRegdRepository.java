@@ -13,9 +13,4 @@ import com.jk.entity.VehicleOwnerDetlsEntity;
 public interface VehicleOwnerRegdRepository extends JpaRepository<VehicleOwnerDetlsEntity, Serializable>{
 	
 	VehicleOwnerDetlsEntity findByPid(int ownerID);
-	
-	@Query(value = "SELECT vehicle_owner_id FROM vehicle_owner_detls", nativeQuery = true)
-	List<Integer>getAllVehicleOwnerID();
-	@Query(value = "SELECT first_name FROM vehicle_owner_detls", nativeQuery = true)
-	List<String>getAllVehicleOwnerName();
 }

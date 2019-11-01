@@ -43,7 +43,7 @@
 								<td><label>:&nbsp;${vhclDtls.brandName}</label></td>
 							</tr>
 							<tr>
-								<td>&nbsp;<a href="#"><button type="button" style="background-color: aqua;">Edit</button></a></td>
+								<td>&nbsp;<a href="#"><button type="button" style="background-color: aqua;" name="edit">Edit</button></a></td>
 							</tr>
 						</c:if>
 					</table>

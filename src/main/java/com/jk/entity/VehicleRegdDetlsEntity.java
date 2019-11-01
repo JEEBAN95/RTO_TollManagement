@@ -27,7 +27,6 @@ import lombok.ToString;
 @Entity
 @Table(name="VEHICLE_REGD_DTLS")
 public class VehicleRegdDetlsEntity implements Serializable{
-	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name="VEHICLE_REGD_ID")

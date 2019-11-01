@@ -37,9 +37,5 @@ public interface RtoService {
 
 	public void updateVhclRegdDtls(VehicleRegdDetlsDTO vhclRegdDto, int ownerID); 
 	
-	public List<Integer> getAllOwnersIDs();
-	
-	public List<String>getAllOwnersNames();
-
 	public VehicleRegdDetlsEntity getVehicleRegdDtlsByVhclID(int vhclId);
 }
