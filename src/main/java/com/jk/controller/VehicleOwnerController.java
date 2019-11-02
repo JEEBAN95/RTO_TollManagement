@@ -96,9 +96,10 @@ public class VehicleOwnerController {
 		if (vhclId != 0) {
 			model.addAttribute("success", "Successfully Registered");
 			model.addAttribute("vhclRegdNum", rtoService.getVehicleRegdDtlsByVhclID(vhclId).getVehiceRegdNum());
+			
+			System.out.println(model.getAttribute("vhclRegdNum"));
 			return "result";
 		}
 		return "result";
 	}
-
 }

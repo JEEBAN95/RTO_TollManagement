@@ -27,6 +27,7 @@ import lombok.ToString;
 @Entity
 @Table(name="VEHICLE_REGD_DTLS")
 public class VehicleRegdDetlsEntity implements Serializable{
+	private static final long serialVersionUID = -2798121299129239356L;
 	
 	@Id
 	@Column(name="VEHICLE_REGD_ID")
@@ -36,17 +37,16 @@ public class VehicleRegdDetlsEntity implements Serializable{
 	private Date regdDate;
 	@Column(name="REG_CENTER")
 	private String regCenter;
-	@Column(name="CREATE_DT",updatable=false)
+	@Column(name="CREATE_DT")
 	@CreationTimestamp
 	private Timestamp createdDate;
 	@Column(name = "UPDATE_DT")
 	@UpdateTimestamp
 	private Timestamp updateDate;
-	@Column(name="VEHICLE_REGD_NUM")
+	@Column(name="VEHICLE_REGD_NUM", updatable = false)
 	private String vehiceRegdNum;
 	
 	@OneToOne(orphanRemoval = true)
 	@Cascade(CascadeType.ALL)
 	private VehicleOwnerDetlsEntity  owner;
-		
 }

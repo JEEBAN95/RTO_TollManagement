@@ -1,6 +1,5 @@
 package com.jk.service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -52,7 +51,8 @@ public class RtoServiceImpl implements RtoService {
 		VehicleOwnerAdderssDetlsEnitity vhclOnrAddrRegdEntity = null;
 		vhclOnrAddrRegdEntity = new VehicleOwnerAdderssDetlsEnitity();
 		BeanUtils.copyProperties(vhclOnrAddRegDto, vhclOnrAddrRegdEntity);
-
+		
+		//get vehicleOwner
 		Optional<VehicleOwnerDetlsEntity> OptvhclOnrRegdEntity = vhclOnrRepo.findById(ownerID);
 		if (OptvhclOnrRegdEntity.get() != null) {
 			vhclOnrAddrRegdEntity.setOwner(OptvhclOnrRegdEntity.get());
@@ -66,15 +66,17 @@ public class RtoServiceImpl implements RtoService {
 
 		VehicleRegdDetlsEntity vhclRegdDtlsEntity = null;
 		vhclRegdDtlsEntity = new VehicleRegdDetlsEntity();
-
+		BeanUtils.copyProperties(vhclRegdDto, vhclRegdDtlsEntity);
+		
 		// costume Id generator
 		Random rndmNo1, rndmNo2;
 		rndmNo1 = new Random();
 		rndmNo2 = new Random();
 		String vehiceRegdNum = "VRCTF" + rndmNo1.nextInt() + "RCVU" + rndmNo2.nextInt();
-		BeanUtils.copyProperties(vhclRegdDto, vhclRegdDtlsEntity);
-		vhclRegdDtlsEntity.setVehiceRegdNum(vehiceRegdNum);
+		//get vehicleOwner 
 		Optional<VehicleOwnerDetlsEntity> OptvhclOnrRegdEntity = vhclOnrRepo.findById(ownerID);
+		vhclRegdDtlsEntity.setVehiceRegdNum(vehiceRegdNum);
+		
 		if (OptvhclOnrRegdEntity.get() != null) {
 			vhclRegdDtlsEntity.setOwner(OptvhclOnrRegdEntity.get());
 			// save entity
@@ -84,9 +86,10 @@ public class RtoServiceImpl implements RtoService {
 
 	@Override
 	public void insertVehicleDetails(VehicleDetlsDTO vhclDtlsDto, int ownerID) {
+		
 		VehicleDetlsEntity vhclDtlsEntity = new VehicleDetlsEntity();
-
 		BeanUtils.copyProperties(vhclDtlsDto, vhclDtlsEntity);
+		//get vehicleOwner 
 		Optional<VehicleOwnerDetlsEntity> OptvhclOnrRegdEntity = vhclOnrRepo.findById(ownerID);
 		if (OptvhclOnrRegdEntity.get() != null) {
 			vhclDtlsEntity.setOwner(OptvhclOnrRegdEntity.get());
@@ -97,21 +100,25 @@ public class RtoServiceImpl implements RtoService {
 
 	@Override
 	public VehicleOwnerDetlsEntity getOwnerByID(int ownerID) {
+		
 		return vhclOnrRepo.findByPid(ownerID);
 	}// getOwnerByID()
 
 	@Override
 	public VehicleDetlsEntity getVehicleDtlsBy(int ownerID) {
+		
 		return vhclDtlsRepo.findByOwnerIdFk(ownerID);
 	}// getVehicleDtlsBy()
 
 	@Override
 	public VehicleOwnerAdderssDetlsEnitity getVehicleOnrAddrDtlsBy(int ownerID) {
+		
 		return vhclOnrAddrRepo.findByOwnerIdFk(ownerID);
 	}// getVehicleOnrAddrDtlsBy()
 
 	@Override
 	public VehicleRegdDetlsEntity getVehicleRegdDtlsBy(int ownerID) {
+		
 		return vhclRegdDtlsRepo.findByOwnerIdFk(ownerID);
 	}// getVehicleRegdDtlsBy()
 
@@ -159,12 +166,12 @@ public class RtoServiceImpl implements RtoService {
 		VehicleOwnerDetlsEntity vhclOnrDtlsEntity = vhclRegdDtlsEntity.getOwner();
 		BeanUtils.copyProperties(vhclRegdDto, vhclRegdDtlsEntity);
 		vhclRegdDtlsEntity.setOwner(vhclOnrDtlsEntity);
-		vhclRegdDtlsRepo.save(vhclRegdDtlsEntity);
-		
+		vhclRegdDtlsRepo.save(vhclRegdDtlsEntity);		
 	}// updateVhclRegdDtls()
 
 	@Override
 	public VehicleRegdDetlsEntity getVehicleRegdDtlsByVhclID(int vhclId) {
+		
 		return vhclRegdDtlsRepo.findByRegdId(vhclId);
-	}
-}
+	}//getVehicleRegdDtlsByVhclID
+}//class

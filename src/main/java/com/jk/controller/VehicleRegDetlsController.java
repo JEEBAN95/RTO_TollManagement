@@ -61,7 +61,7 @@ public class VehicleRegDetlsController {
 		return "vehicle-regdUpdate";
 	}// updateVhclRegdFormData
 
-	@PostMapping("/vhclRegdUpdate")
+	@PostMapping("/vhclRegdUpd")
 	public String updateVhclRegdForm(@RequestParam("ownerID") int id, @ModelAttribute VehicleRegdDetlsCmd vhclRegdCmd) {
 
 		vhclRegdDto = new VehicleRegdDetlsDTO();
@@ -81,4 +81,4 @@ public class VehicleRegDetlsController {
 		// after submit redirect to result page
 		return "redirect:/result?ownerID=" + id + "&vRId=" + vhclId;
 	}// submitMethod
-}// class
+}// class 
