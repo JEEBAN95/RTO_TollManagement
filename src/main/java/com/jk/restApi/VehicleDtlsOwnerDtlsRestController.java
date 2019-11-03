@@ -22,6 +22,7 @@ import com.jk.repository.VehicleOwnerRegdRepository;
 import com.jk.repository.VehicleRegDetlsRepository;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @Api
@@ -36,26 +37,26 @@ public class VehicleDtlsOwnerDtlsRestController {
 	@Autowired
 	private VehicleRegDetlsRepository vhclRegdDtlsRepo;
 
-	@GetMapping(value = "/vhclDtlsOnrdtls", produces = { "application/json" })
-	
+	@GetMapping(value = "/getDetails", produces = { "application/json" })
+	@ApiOperation(value = "RestApi", response = VehicleDetailsOwnerDetails.class)
 	public VehicleDetailsOwnerDetails getAllDetails(@RequestParam("ownerID") int id) {
 
 		VehicleDetailsOwnerDetails vhDtOnDt = new VehicleDetailsOwnerDetails();
 
 		// call repository methods
-	// VehicleOwnerAdderssDetlsEnitity
+		// VehicleOwnerAdderssDetlsEnitity
 		VehicleOwnerAdderssDetlsEnitity vhclOnrAddrDtlsEntity = null;
 		VehicleOwnerAddressDetlsDTO vhclOnrAddrDtlsDTO = null;
 		vhclOnrAddrDtlsEntity = vhclOnrAddrRegdRepo.findByOwnerIdFk(id);
 		vhclOnrAddrDtlsDTO = new VehicleOwnerAddressDetlsDTO();
-		
+
 		// copy entity class to dto class
 		BeanUtils.copyProperties(vhclOnrAddrDtlsEntity, vhclOnrAddrDtlsDTO);
 
 		// VehicleDetlsEntity
 		VehicleDetlsEntity vhclDtlsEntity = null;
 		VehicleDetlsDTO vhclDtlsDTO = null;
-		
+
 		vhclDtlsEntity = vhclDtlsRepo.findByOwnerIdFk(id);
 		vhclDtlsDTO = new VehicleDetlsDTO();
 		// copy entity class to dto class
@@ -64,7 +65,7 @@ public class VehicleDtlsOwnerDtlsRestController {
 		// VehicleOwnerDetlsEntity
 		Optional<VehicleOwnerDetlsEntity> optvhclOnrDtlsEntity = null;
 		VehicleOwnerDetlsDTO vhclOnrDtlsDTO = null;
-		
+
 		optvhclOnrDtlsEntity = vhclOnrRegdRepo.findById(id);
 		if (optvhclOnrDtlsEntity.isPresent()) {
 			vhclOnrDtlsDTO = new VehicleOwnerDetlsDTO();
@@ -76,7 +77,7 @@ public class VehicleDtlsOwnerDtlsRestController {
 		VehicleRegdDetlsDTO vhclRegdDtlsDTO = null;
 		vhclRegdDtlsEntity = vhclRegdDtlsRepo.findByOwnerIdFk(id);
 		vhclRegdDtlsDTO = new VehicleRegdDetlsDTO();
-		
+
 		// copy entity class to dto class
 		BeanUtils.copyProperties(vhclRegdDtlsEntity, vhclRegdDtlsDTO);
 		// set all dto class to VehicleDetailsOwnerDetails
@@ -85,6 +86,6 @@ public class VehicleDtlsOwnerDtlsRestController {
 		vhDtOnDt.setVhclOnrDtlsDto(vhclOnrDtlsDTO);
 		vhDtOnDt.setVhclRegdDtlsDto(vhclRegdDtlsDTO);
 		return vhDtOnDt;
-		
+
 	}// getAllDetails()
 }// class
