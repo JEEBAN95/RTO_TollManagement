@@ -12,9 +12,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+
+//Configure all dto classes
 public class VehicleDetailsOwnerDetails {
 	
-	//Configure all dto classes
 	private VehicleDetlsEntity vhclDtlsEntity;
 	private VehicleOwnerAdderssDetlsEnitity vhclOnrAddrDtlsEntity;
 	private VehicleOwnerDetlsEntity vhclOnrDtlsEntity;

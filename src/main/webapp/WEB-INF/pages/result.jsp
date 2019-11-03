@@ -24,7 +24,7 @@
 	</table>
 	<br>
 	<br>
-	<table style="width: 100%; height: 100%">
+	<table style="width: 100%; height: 100%;">
 		<tr>
 			<td>
 				<div>
@@ -42,17 +42,12 @@
 								<td>&nbsp;Brand Name&nbsp;</td>
 								<td><label>:&nbsp;${vhclDtls.brandName}</label></td>
 							</tr>
-							<tr>
-								<td>&nbsp;<a href="vhclRegUpdate?ownerID=${ownerID}"><button type="button" style="background-color: aqua;">Edit</button></a></td>
-							</tr>
 						</c:if>
 					</table>
-					<br> <br>
 				</div>
 			</td>
-
 			<td>
-				<div>
+				<div >
 					<table>
 						<c:if test="${!empty vhclDtls}">
 							<tr>
@@ -91,9 +86,6 @@
 								<td>&nbsp;Update Date&nbsp;</td>
 								<td><label>:&nbsp;${vhclDtls.owner.updateDate}</label></td>
 							</tr>
-							<tr>
-								<td>&nbsp;<a href="#"><button type="button" style="background-color: aqua;">Edit</button></a></td>
-							</tr>
 						</c:if>
 					</table>
 				</div>
@@ -126,9 +118,6 @@
 								<td>&nbsp;Update Date&nbsp;</td>
 								<td><label>:&nbsp;${vhclOnrAddrDtls.updateDate}</label></td>
 							</tr>
-							<tr>
-								<td>&nbsp;<a href="#"><button type="button" style="background-color: aqua;">Edit</button></a></td>
-							</tr>
 						</c:if>
 					</table>
 				</div>
@@ -152,9 +141,6 @@
 							<tr>
 								<td>&nbsp;Update Date&nbsp;</td>
 								<td><label>:&nbsp;${vhclRegdDtls.updateDate}</label></td>
-							</tr>
-							<tr>
-								<td>&nbsp;<a href="#"><button type="button" style="background-color: aqua;">Edit</button></a></td>
 							</tr>
 						</c:if>
 					</table>

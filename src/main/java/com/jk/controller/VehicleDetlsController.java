@@ -22,51 +22,54 @@ public class VehicleDetlsController {
 	@Autowired
 	private RtoService rtoService;
 
-	private VehicleDetlsCmd vhclDtlsCmd;
-	private VehicleDetlsDTO vhclDtlsDto;
-
 	@GetMapping("/vhclDtls")
 	public String showVhclDtlsForm(Model model, @RequestParam("ownerID") int id) {
+		
+		VehicleDetlsCmd vhclDtlsCmd = null;
 		vhclDtlsCmd = new VehicleDetlsCmd();
 		model.addAttribute("vhclDtlsModelCmd", vhclDtlsCmd);
 		model.addAttribute("ownerID", id);
 		return "vehicle-dtls";
 	}// showVhclDtlsForm
 
+	// use service
+	// redirect to next form
 	@PostMapping("/vhclInfo")
 	public String saveVhclDtlsFormData(@ModelAttribute VehicleDetlsCmd vhclDtlsCmd, @RequestParam("ownerID") int id) {
 
+		VehicleDetlsDTO vhclDtlsDto = null;
 		vhclDtlsDto = new VehicleDetlsDTO();
 		BeanUtils.copyProperties(vhclDtlsCmd, vhclDtlsDto);
-
-		// use service
 		rtoService.insertVehicleDetails(vhclDtlsDto, id);
-		// redirect to next form
 		return "redirect:/vhclReg?ownerID=" + id;
 	}// saveVhclDtlsFormData
 
+	// use service
+	// launch vehicle-dtlsUpdate form
 	@GetMapping("/vhclDtlsUpd")
 	public String showVhclDtlsUpdateFormData(@ModelAttribute VehicleDetlsCmd vhclDtlsCmd,
 			@RequestParam("ownerID") int id, Model model) {
-
+		
+		VehicleDetlsDTO vhclDtlsDto=null;
 		vhclDtlsDto = new VehicleDetlsDTO();
-		// use service
 		VehicleDetlsEntity vhclDtlsEntity = rtoService.getVehicleDtlsBy(id);
 		BeanUtils.copyProperties(vhclDtlsEntity, vhclDtlsDto);
 		BeanUtils.copyProperties(vhclDtlsDto, vhclDtlsCmd);
 		model.addAttribute("vhclDtlsModelCmd", vhclDtlsCmd);
 		model.addAttribute("ownerID", id);
-		//launch vehicle-dtlsUpdate form
 		return "vehicle-dtlsUpdate";
 	}// showVhclDtlsUpdateFormData
 
+	// use service
+	// redirect to next page
 	@PostMapping("/vhclInfoUpd")
 	public String updateVhclDtls(@ModelAttribute VehicleDetlsCmd vhclDtlsCmd, @RequestParam("ownerID") int id) {
-
+		
+		VehicleDetlsDTO vhclDtlsDto=null;
 		vhclDtlsDto = new VehicleDetlsDTO();
 		BeanUtils.copyProperties(vhclDtlsCmd, vhclDtlsDto);
 		rtoService.updateVhclDtls(vhclDtlsDto, id);
-		// redirect to next page
 		return "redirect:/vhclReg?ownerID=" + id;
-	}//updateVhclDtls
-}
+		
+	}// updateVhclDtls
+}// class

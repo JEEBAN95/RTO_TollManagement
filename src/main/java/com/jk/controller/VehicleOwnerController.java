@@ -14,6 +14,7 @@ import com.jk.command.VehicleOwnerDetlsCmd;
 import com.jk.dto.VehicleOwnerDetlsDTO;
 import com.jk.entity.VehicleDetlsEntity;
 import com.jk.entity.VehicleOwnerAdderssDetlsEnitity;
+import com.jk.entity.VehicleOwnerDetlsEntity;
 import com.jk.entity.VehicleRegdDetlsEntity;
 import com.jk.service.RtoService;
 
@@ -24,70 +25,77 @@ public class VehicleOwnerController {
 	@Autowired
 	private RtoService rtoService;
 
-	private VehicleOwnerDetlsCmd vhclOnrRegdCmd;
-	private VehicleOwnerDetlsDTO vhclOnrRegdDto;
-
 	// display homePage
-		@GetMapping("/home")
-		public String showHome() {
-			
-			return "home";
-		}// showHome	
-	
+	@GetMapping("/home")
+	public String showHome() {
+
+		return "home";
+	}// showHome
+
 	// display owner registration form
 	@GetMapping("/register")
 	public String showOwnerRegdForm(Model model) {
-		
+		VehicleOwnerDetlsCmd vhclOnrRegdCmd = null;
 		vhclOnrRegdCmd = new VehicleOwnerDetlsCmd();
 		model.addAttribute("vOwnerDtlsModelCmd", vhclOnrRegdCmd);
 		return "vehicle_owner_regd";
-	}//showOwnerRegdForm
+	}// showOwnerRegdForm
 
 	// get owner data
+	// use service
+	// redirect to next form
 	@PostMapping("/vhclOnrRegister")
 	public String saveOwnerRegdFormData(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd) {
-		
+
+		VehicleOwnerDetlsDTO vhclOnrRegdDto = null;
 		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
 		BeanUtils.copyProperties(vhclOnrRegdCmd, vhclOnrRegdDto);
-
-		// use service
 		int id = rtoService.insertVehicleOwner(vhclOnrRegdDto);
-		//redirect to next form
 		return "redirect:/vhclOnrAddReg?ownerID=" + id;
-	}//saveOwnerRegdFormData
+	}// saveOwnerRegdFormData
 
+	// use service
+	// launch vehicle_owner_update Form
 	@GetMapping("/updateVhclOnr")
-	public String updateVehicleOwnerShowFormWithData(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd,
+	public String vehicleOwnerShowUpdateFormWithData(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd,
 			@RequestParam("ownerID") int id, Model model) {
 
+		VehicleOwnerDetlsDTO vhclOnrRegdDto = null;
 		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
-		
-		// use service
-		BeanUtils.copyProperties(rtoService.getOwnerByID(id), vhclOnrRegdDto);
+		VehicleOwnerDetlsEntity vhclOnrDtlsEntity = null;
+		vhclOnrDtlsEntity = rtoService.getOwnerByID(id);
+		BeanUtils.copyProperties(vhclOnrDtlsEntity, vhclOnrRegdDto);
 		BeanUtils.copyProperties(vhclOnrRegdDto, vhclOnrRegdCmd);
 		model.addAttribute("vOwnerDtlsModelCmd", vhclOnrRegdCmd);
 		model.addAttribute("ownerID", id);
 		return "vehicle_owner_update";
-	}
+	}// vehicleOwnerShowUpdateFormWithData
 
+	// use service
+	// redirect to next
 	@PostMapping("/vhclOnrRegdUpdt")
 	public String updateVehicleOwner(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd,
 			@RequestParam("ownerID") int id) {
 
+		VehicleOwnerDetlsDTO vhclOnrRegdDto = null;
 		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
 		BeanUtils.copyProperties(vhclOnrRegdCmd, vhclOnrRegdDto);
-		// use service
 		rtoService.updateOwner(vhclOnrRegdDto, id);
 		return "redirect:/vhclOnrAddReg?ownerID=" + id;
-	}
+	}// updateVehicleOwner
 
+	// use service
+	// show details
 	@GetMapping("/result")
-	public String showResult(Model model, @RequestParam("ownerID") int id, @RequestParam("vRId") int vhclId) {
+	public String getDetails(Model model, @RequestParam("ownerID") int id, @RequestParam("vRId") int vhclId) {
 
-		// use service
-		VehicleDetlsEntity vhclDtls = rtoService.getVehicleDtlsBy(id);
-		VehicleOwnerAdderssDetlsEnitity vhclOnrAddrDtls = rtoService.getVehicleOnrAddrDtlsBy(id);
-		VehicleRegdDetlsEntity vhclRegdDtls = rtoService.getVehicleRegdDtlsBy(id);
+		VehicleDetlsEntity vhclDtls = null;
+		VehicleRegdDetlsEntity vhclRegdDtls = null;
+		VehicleOwnerAdderssDetlsEnitity vhclOnrAddrDtls = null;
+
+		vhclDtls = rtoService.getVehicleDtlsBy(id);
+		vhclOnrAddrDtls = rtoService.getVehicleOnrAddrDtlsBy(id);
+		vhclRegdDtls = rtoService.getVehicleRegdDtlsBy(id);
 		model.addAttribute("vhclDtls", vhclDtls);
 		model.addAttribute("vhclOnrAddrDtls", vhclOnrAddrDtls);
 		model.addAttribute("vhclRegdDtls", vhclRegdDtls);
@@ -97,7 +105,8 @@ public class VehicleOwnerController {
 			model.addAttribute("success", "Successfully Registered");
 			model.addAttribute("vhclRegdNum", rtoService.getVehicleRegdDtlsByVhclID(vhclId).getVehiceRegdNum());
 			return "result";
-		}
+		} // if
 		return "result";
-	}//showResult
-}
+	}// getDetails
+
+}// class
