@@ -21,8 +21,11 @@ import com.jk.repository.VehicleOwnerAddrRegdRepository;
 import com.jk.repository.VehicleOwnerRegdRepository;
 import com.jk.repository.VehicleRegDetlsRepository;
 
+import io.swagger.annotations.Api;
+
 @RestController
-public class VehicleDtlsOwnerDtlsRestApi {
+@Api
+public class VehicleDtlsOwnerDtlsRestController {
 
 	@Autowired
 	private VehicleDetailsRepository vhclDtlsRepo;
@@ -33,42 +36,47 @@ public class VehicleDtlsOwnerDtlsRestApi {
 	@Autowired
 	private VehicleRegDetlsRepository vhclRegdDtlsRepo;
 
-	@GetMapping(value = "/vhclDtlsOnrdtls", produces = { "application/json"})
+	@GetMapping(value = "/vhclDtlsOnrdtls", produces = { "application/json" })
+	
 	public VehicleDetailsOwnerDetails getAllDetails(@RequestParam("ownerID") int id) {
 
 		VehicleDetailsOwnerDetails vhDtOnDt = new VehicleDetailsOwnerDetails();
 
 		// call repository methods
-		// VehicleOwnerAdderssDetlsEnitity
+	// VehicleOwnerAdderssDetlsEnitity
 		VehicleOwnerAdderssDetlsEnitity vhclOnrAddrDtlsEntity = null;
 		VehicleOwnerAddressDetlsDTO vhclOnrAddrDtlsDTO = null;
 		vhclOnrAddrDtlsEntity = vhclOnrAddrRegdRepo.findByOwnerIdFk(id);
 		vhclOnrAddrDtlsDTO = new VehicleOwnerAddressDetlsDTO();
+		
 		// copy entity class to dto class
 		BeanUtils.copyProperties(vhclOnrAddrDtlsEntity, vhclOnrAddrDtlsDTO);
-		
+
 		// VehicleDetlsEntity
 		VehicleDetlsEntity vhclDtlsEntity = null;
 		VehicleDetlsDTO vhclDtlsDTO = null;
+		
 		vhclDtlsEntity = vhclDtlsRepo.findByOwnerIdFk(id);
 		vhclDtlsDTO = new VehicleDetlsDTO();
 		// copy entity class to dto class
 		BeanUtils.copyProperties(vhclDtlsEntity, vhclDtlsDTO);
-		
+
 		// VehicleOwnerDetlsEntity
 		Optional<VehicleOwnerDetlsEntity> optvhclOnrDtlsEntity = null;
 		VehicleOwnerDetlsDTO vhclOnrDtlsDTO = null;
+		
 		optvhclOnrDtlsEntity = vhclOnrRegdRepo.findById(id);
 		if (optvhclOnrDtlsEntity.isPresent()) {
 			vhclOnrDtlsDTO = new VehicleOwnerDetlsDTO();
 			// copy entity class to dto class
 			BeanUtils.copyProperties(optvhclOnrDtlsEntity.get(), vhclOnrDtlsDTO);
-		}//if
-		
+		} // if
+
 		VehicleRegdDetlsEntity vhclRegdDtlsEntity = null;
 		VehicleRegdDetlsDTO vhclRegdDtlsDTO = null;
 		vhclRegdDtlsEntity = vhclRegdDtlsRepo.findByOwnerIdFk(id);
 		vhclRegdDtlsDTO = new VehicleRegdDetlsDTO();
+		
 		// copy entity class to dto class
 		BeanUtils.copyProperties(vhclRegdDtlsEntity, vhclRegdDtlsDTO);
 		// set all dto class to VehicleDetailsOwnerDetails
@@ -77,5 +85,6 @@ public class VehicleDtlsOwnerDtlsRestApi {
 		vhDtOnDt.setVhclOnrDtlsDto(vhclOnrDtlsDTO);
 		vhDtOnDt.setVhclRegdDtlsDto(vhclRegdDtlsDTO);
 		return vhDtOnDt;
+		
 	}// getAllDetails()
-}//class
+}// class
