@@ -27,6 +27,7 @@ public class SwaggerConfigurer {
 		return docket;
 	}
 
+	@SuppressWarnings("deprecation")
 	private ApiInfo apiDetails() {
 		return new ApiInfo("RTO Application Api", "Application Dcument", "1.0", "http://<hostName>:2525/rto/",
 				"All India RTO Corporation", "Api Licence", "?");

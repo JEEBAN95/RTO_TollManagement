@@ -1,9 +1,9 @@
 package com.jk.restApi;
 
-import com.jk.dto.VehicleDetlsDTO;
-import com.jk.dto.VehicleOwnerAddressDetlsDTO;
-import com.jk.dto.VehicleOwnerDetlsDTO;
-import com.jk.dto.VehicleRegdDetlsDTO;
+import com.jk.entity.VehicleDetlsEntity;
+import com.jk.entity.VehicleOwnerAdderssDetlsEnitity;
+import com.jk.entity.VehicleOwnerDetlsEntity;
+import com.jk.entity.VehicleRegdDetlsEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,9 +15,9 @@ import lombok.ToString;
 public class VehicleDetailsOwnerDetails {
 	
 	//Configure all dto classes
-	private VehicleDetlsDTO vhclDto;
-	private VehicleOwnerAddressDetlsDTO vhclOnrAddrDtlsDto;
-	private VehicleOwnerDetlsDTO vhclOnrDtlsDto;
-	private VehicleRegdDetlsDTO vhclRegdDtlsDto;
+	private VehicleDetlsEntity vhclDtlsEntity;
+	private VehicleOwnerAdderssDetlsEnitity vhclOnrAddrDtlsEntity;
+	private VehicleOwnerDetlsEntity vhclOnrDtlsEntity;
+	private VehicleRegdDetlsEntity vhclRegdDtlsEntity;
 	
 }
