@@ -12,9 +12,10 @@
 	<table>
 		<form:form action="vhclInfoUpd?ownerID=${ownerID}"
 			modelAttribute="vhclDtlsModelCmd">
-			<tr>
+				<tr>
 				<td>&nbsp;Vehicle_Type&nbsp;</td>
-				<td><form:input path="vtype" /></td>
+				<td>Two wheeler&nbsp;<form:radiobutton path="vtype" value="2-Wheeler"/>
+				&nbsp;Four wheeler<form:radiobutton path="vtype" value="4-Wheeler"/></td>
 			</tr>
 			<tr>
 				<td>&nbsp;MFG_Year&nbsp;</td>

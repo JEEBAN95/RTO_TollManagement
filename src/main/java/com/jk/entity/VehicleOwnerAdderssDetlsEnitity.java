@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,13 +33,13 @@ public class VehicleOwnerAdderssDetlsEnitity implements Serializable{
 	@Column(name="ADDRESS_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator ="ADDRESS_ID_SEQ")
 	private int addrId;
-	@Column(name="HNO")
+	@Column(name="HNO", nullable = false)
 	private String hNo;
-	@Column(name="STREET_NAME")
+	@Column(name="STREET_NAME", nullable = false)
 	private String streetName;
-	@Column(name="CITY")
+	@Column(name="CITY", nullable = false)
 	private String city;
-	@Column(name="ZIP_CODE")
+	@Column(name="ZIP_CODE", nullable = false)
 	private int zipCode;
 	
 	@Column(name="CREATE_DT",updatable=false)
@@ -51,5 +52,6 @@ public class VehicleOwnerAdderssDetlsEnitity implements Serializable{
 	
 	@OneToOne(orphanRemoval = true)
 	@Cascade(CascadeType.ALL)
+	@JoinColumn(name = "OWNER_ID_FK")
 	private VehicleOwnerDetlsEntity  owner;
 }

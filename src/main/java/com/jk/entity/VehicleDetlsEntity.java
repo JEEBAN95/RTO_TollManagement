@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,17 +28,18 @@ public class VehicleDetlsEntity implements Serializable{
 	
 	@Id
 	@Column(name="VEHICLE_DTL_ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY,generator = "VEHICLE_DTL_ID_SEQ")
+	@GeneratedValue(strategy = GenerationType.AUTO,generator = "VEHICLE_DTL_ID_SEQ")
 	private int vid;
-	@Column(name="VEHICLE_TYPE")
+	@Column(name="VEHICLE_TYPE", nullable = false)
 	private String vtype;
-	@Column(name="MFG_YEAR")
+	@Column(name="MFG_YEAR", nullable = false)
 	private int mfgYear;
-	@Column(name="BRAND_NAME")
+	@Column(name="BRAND_NAME", nullable = false)
 	private String brandName;	//vehicle company name
 	
 	@OneToOne(orphanRemoval = true)
 	@Cascade(CascadeType.ALL)
+	@JoinColumn(name = "OWNER_ID_FK")
 	private VehicleOwnerDetlsEntity  owner;
 	
 }

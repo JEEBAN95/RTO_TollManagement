@@ -26,7 +26,6 @@
 			</tr>
 			<tr>
 				<td><button type="submit">Next</button>
-					<%-- <a href="vhclOnrAddUpdtReg?ownerID=${ownerID}"><button type="button">Previous</button></a> --%>
 				</td>
 			</tr>
 		</form:form>

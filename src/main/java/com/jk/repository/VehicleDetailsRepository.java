@@ -12,6 +12,6 @@ import com.jk.entity.VehicleDetlsEntity;
 @Repository
 public interface VehicleDetailsRepository extends JpaRepository<VehicleDetlsEntity, Serializable>  {
 	
-	@Query(value="SELECT * FROM VEHICLE_DETLS WHERE owner_vehicle_owner_id=?1", nativeQuery = true)
+	@Query(value="SELECT * FROM VEHICLE_DETLS WHERE OWNER_ID_FK=?1", nativeQuery = true)
 	VehicleDetlsEntity findByOwnerIdFk(int id);
 }

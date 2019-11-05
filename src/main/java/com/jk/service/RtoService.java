@@ -1,6 +1,5 @@
 package com.jk.service;
 
-import java.util.List;
 
 import com.jk.dto.VehicleDetlsDTO;
 import com.jk.dto.VehicleOwnerAddressDetlsDTO;

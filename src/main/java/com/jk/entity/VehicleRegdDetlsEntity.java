@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -35,7 +36,7 @@ public class VehicleRegdDetlsEntity implements Serializable{
 	private int regdId;
 	@Column(name="REGD_DATE")
 	private Date regdDate;
-	@Column(name="REG_CENTER")
+	@Column(name="REG_CENTER", nullable = false)
 	private String regCenter;
 	@Column(name="CREATE_DT")
 	@CreationTimestamp
@@ -43,10 +44,11 @@ public class VehicleRegdDetlsEntity implements Serializable{
 	@Column(name = "UPDATE_DT")
 	@UpdateTimestamp
 	private Timestamp updateDate;
-	@Column(name="VEHICLE_REGD_NUM", updatable = false)
+	@Column(name="VEHICLE_REGD_NUM", updatable = false, nullable = false)
 	private String vehiceRegdNum;
 	
 	@OneToOne(orphanRemoval = true)
 	@Cascade(CascadeType.ALL)
+	@JoinColumn(name = "OWNER_ID_FK")
 	private VehicleOwnerDetlsEntity  owner;
 }

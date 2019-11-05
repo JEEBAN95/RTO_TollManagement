@@ -58,7 +58,7 @@ public class VehicleOwnerController {
 	// launch vehicle_owner_update Form
 	@GetMapping("/updateVhclOnr")
 	public String vehicleOwnerShowUpdateFormWithData(@ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd,
-			@RequestParam("ownerID") int id, Model model) {
+			@RequestParam("ownerID") int id, Model model){
 
 		VehicleOwnerDetlsDTO vhclOnrRegdDto = null;
 		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
@@ -80,7 +80,7 @@ public class VehicleOwnerController {
 		VehicleOwnerDetlsDTO vhclOnrRegdDto = null;
 		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
 		BeanUtils.copyProperties(vhclOnrRegdCmd, vhclOnrRegdDto);
-		rtoService.updateOwner(vhclOnrRegdDto, id);
+			rtoService.updateOwner(vhclOnrRegdDto, id);
 		return "redirect:/vhclOnrAddReg?ownerID=" + id;
 	}// updateVehicleOwner
 

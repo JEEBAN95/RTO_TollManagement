@@ -68,12 +68,12 @@ public class VehicleOwnerAddressController {
 	// redirect to next form
 	@PostMapping("/vhclOnrAddrRegdUpdt")
 	public String updateVhclOwnrAddr(@ModelAttribute VehicleOwnerAdderssDetlsCmd vhclOnrAddrRegdCmd,
-			@RequestParam("ownerID") int id) {
+			@RequestParam("ownerID") int id){
 
 		VehicleOwnerAddressDetlsDTO vhclOnrAddrRegdDTO;
 		vhclOnrAddrRegdDTO = new VehicleOwnerAddressDetlsDTO();
 		BeanUtils.copyProperties(vhclOnrAddrRegdCmd, vhclOnrAddrRegdDTO);
-		rtoService.updateVhclOnrAddr(vhclOnrAddrRegdDTO, id);
+			rtoService.updateVhclOnrAddr(vhclOnrAddrRegdDTO, id);
 		return "redirect:/vhclDtls?ownerID=" + id;
 	}// updateVhclOwnrAddr
 

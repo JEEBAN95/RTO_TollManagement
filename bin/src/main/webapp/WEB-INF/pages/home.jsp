@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +8,11 @@
 </head>
 <body>
 	<div style="text-align: center">
-	<!-- vehicle registration form -->
-		<h3 style="color: blue;">>>>&nbsp;<a href="register" style="color: red">New Vehicle Registration</a></h3>
+		<!-- vehicle registration form -->
+		<h3 style="color: blue;">
+			>>>&nbsp;<a href="register" style="color: red">New Vehicle
+				Registration</a>
+		</h3>
 	</div>
-	<h3>Get all Vehicle-Owner Information</h3>
-	<a href="showDetails"><button type="button" >Show Details</button></a>
 </body>
 </html>

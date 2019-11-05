@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.jk.command.VehicleRegdDetlsCmd;
 import com.jk.dto.VehicleRegdDetlsDTO;
 import com.jk.entity.VehicleRegdDetlsEntity;
+import com.jk.exception.CustomeExceptionHandler;
 import com.jk.service.RtoService;
 
 @Controller
@@ -22,6 +23,7 @@ public class VehicleRegDetlsController {
 	@Autowired
 	private RtoService rtoService;
 
+	// launch page
 	@GetMapping("/vhclReg")
 	public String showVhclRegdForm(Model model, @RequestParam("ownerID") int id) {
 		VehicleRegdDetlsCmd vhclRegdCmd = null;
@@ -31,6 +33,9 @@ public class VehicleRegDetlsController {
 		return "vehicle-regd";
 	}// showVhclRegdForm
 
+	// insert VehicleRegdDetls
+	// use service
+	// redirect to next page
 	@PostMapping("/vhclRegd")
 	public String saveVhclRegdFormData(@RequestParam("ownerID") int id,
 			@ModelAttribute VehicleRegdDetlsCmd vhclRegdCmd) {
@@ -38,35 +43,40 @@ public class VehicleRegDetlsController {
 		VehicleRegdDetlsDTO vhclRegdDto = null;
 		vhclRegdDto = new VehicleRegdDetlsDTO();
 		BeanUtils.copyProperties(vhclRegdCmd, vhclRegdDto);
-		// use service
 		rtoService.insertVehicleRegDetails(vhclRegdDto, id);
 		return "redirect:/result?ownerID=" + id + "&vRId=" + 0;
 	}// saveVhclRegdFormData
 
+	// Update
+	// use service
+	// vehicle-regdUpdate launch form
 	@GetMapping("/vhclRegUpdate")
 	public String vhclRegdUpdateFormData(@RequestParam("ownerID") int id,
-			@ModelAttribute VehicleRegdDetlsCmd vhclRegdCmd, Model model) {
+			@ModelAttribute VehicleRegdDetlsCmd vhclRegdCmd, Model model) throws CustomeExceptionHandler {
 
 		VehicleRegdDetlsDTO vhclRegdDto = null;
 		vhclRegdDto = new VehicleRegdDetlsDTO();
 		VehicleRegdDetlsEntity vhclRegdEntity = rtoService.getVehicleRegdDtlsBy(id);
+		if (vhclRegdEntity == null) {
+			throw new CustomeExceptionHandler();
+		}
 		BeanUtils.copyProperties(vhclRegdEntity, vhclRegdDto);
 		BeanUtils.copyProperties(vhclRegdDto, vhclRegdCmd);
 		model.addAttribute("vRegdModelCmd", vhclRegdCmd);
 		model.addAttribute("ownerID", id);
-		// vehicle-regdUpdate launch form
 		return "vehicle-regdUpdate";
 	}// vhclRegdUpdateFormData
 
 	// redirect to next page
 	// use service
 	@PostMapping("/vhclRegdUpd")
-	public String updateVhclRegdForm(@RequestParam("ownerID") int id, @ModelAttribute VehicleRegdDetlsCmd vhclRegdCmd) {
+	public String updateVhclRegdForm(@RequestParam("ownerID") int id, @ModelAttribute VehicleRegdDetlsCmd vhclRegdCmd)
+			throws CustomeExceptionHandler {
 
 		VehicleRegdDetlsDTO vhclRegdDto = null;
 		vhclRegdDto = new VehicleRegdDetlsDTO();
 		BeanUtils.copyProperties(vhclRegdCmd, vhclRegdDto);
-		rtoService.updateVhclRegdDtls(vhclRegdDto, id);
+			rtoService.updateVhclRegdDtls(vhclRegdDto, id);
 		return "redirect:/result?ownerID=" + id + "&vRId=" + 0;
 	}// updateVhclRegdForm
 
@@ -74,7 +84,7 @@ public class VehicleRegDetlsController {
 	// redirect to result page
 	@GetMapping("/showDetails")
 	public String submitMethod(@RequestParam("vRId") int vhclId, @ModelAttribute VehicleRegdDetlsCmd vhclRegdCmd,
-			Model model) {
+			Model model){
 
 		int id = rtoService.getVehicleRegdDtlsByVhclID(vhclId).getOwner().getPid();
 		return "redirect:/result?ownerID=" + id + "&vRId=" + vhclId;

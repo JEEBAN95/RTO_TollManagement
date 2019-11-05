@@ -24,25 +24,26 @@ import lombok.ToString;
 @Table(name="VEHICLE_OWNER_DETLS")
 @ToString
 public class VehicleOwnerDetlsEntity implements Serializable{
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 395682116861421475L;
+	
 	
 	@Id
 	@Column(name="VEHICLE_OWNER_ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "VEHICLE_OWNER_ID_SEQ")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "VEHICLE_OWNER_ID_SEQ")
 	private int pid;
-	@Column(name="FIRST_NAME")
+	@Column(name="FIRST_NAME", nullable = false)
 	private String first_name;
-	@Column(name="LAST_NAME")
+	@Column(name="LAST_NAME", nullable = false)
 	private String last_name;
-	@Column(name="GENDER")
+	@Column(name="GENDER", nullable = false)
 	private String gender;
-	@Column(name="GMAIL")
+	@Column(name="GMAIL", nullable = false)
 	private String email;
-	@Column(name="PHNO")
+	@Column(name="PHNO" , nullable = false, unique = true )
 	private long  phno;
-	@Column(name="DOB")
+	@Column(name="DOB", nullable = false)
 	private Date dob; 
-	@Column(name="SSN")
+	@Column(name="SSN", nullable = false, unique = true)
 	private long ssn;	//adhar no
 	
 	@Column(name="CREATE_DT",updatable=false)
