@@ -28,9 +28,9 @@
 				<td><form:input  path="zipCode" /></td>
 			</tr>
 			<tr>
-				<td >
-				<Button type="submit" >Next</Button>
-				<%-- <a href="updateVhclOnr?ownerID=${ownerID}"><Button type="button" >Previous</Button></a></td> --%>
+				<td colspan="2">
+				<button type="submit" >Next</button>
+				<button type="reset">Reset</button>
 			</tr>
 		</form:form>
 	</table>

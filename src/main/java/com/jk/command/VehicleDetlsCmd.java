@@ -10,7 +10,7 @@ import lombok.ToString;
 public class VehicleDetlsCmd {
 	
 	private String vtype;
-	private int mfgYear;
+	private Integer mfgYear;
 	private String brandName;	//vehicle company name
 	
 }

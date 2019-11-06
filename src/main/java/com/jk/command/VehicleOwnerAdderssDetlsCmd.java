@@ -13,6 +13,6 @@ public class VehicleOwnerAdderssDetlsCmd {
 	private String hNo;
 	private String streetName;
 	private String city;
-	private int zipCode;
+	private Integer zipCode;
 	
 }

@@ -26,7 +26,8 @@
 				<td><form:input path="brandName" /></td>
 			</tr>
 			<tr>
-				<td><button type="submit">Next</button>
+				<td colspan="2"><button type="submit">Next</button>
+				<button type="reset">Reset</button>
 				</td>
 			</tr>
 		</form:form>

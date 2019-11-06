@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <body>
 	<h3>Vehicle Registration</h3>
 	<table>
-		<form:form   action="vhclRegdUpd?ownerID=${ownerID}"
+		<form:form action="vhclRegdUpd?ownerID=${ownerID}"
 			modelAttribute="vRegdModelCmd">
 			<tr>
 				<td>&nbsp;Regd_Date&nbsp;</td>
@@ -22,7 +22,8 @@
 				<td><form:input path="regCenter" /></td>
 			</tr>
 			<tr>
-				<td><Button type="submit">Submit</Button></td>
+				<td colspan="2"><Button style="color: DeepSkyBlue" type="submit">Submit</Button>
+					<button style="color: FF4500" type="reset">Reset</button></td>
 			</tr>
 		</form:form>
 	</table>

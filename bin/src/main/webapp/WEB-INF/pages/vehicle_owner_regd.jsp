@@ -6,25 +6,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script>
-	$(function() {
-		$('form[id="vhclOnrReg"]').validate({
-			rules : {
-				first_name : 'required',
-			},
-			messages : {
-				first_name : 'Please enter username',
-			},
-			submitHandler : function(form) {
-				form.submit();
-			}
-		});
-	});
-</script>
 </head>
 
 <body>
@@ -55,8 +36,7 @@
 			</tr>
 			<tr>
 				<td>&nbsp;Dob&nbsp;</td>
-				<td><form:input type="date" path="dob"
-						value="{{ \Carbon\Carbon::createFromDate($db->year,$db->month,$db->day)->format('Y-m-d')}}"/></td>
+				<td><form:input type="date" path="dob"/></td>
 			</tr>
 			<tr>
 				<td>&nbsp;SSN&nbsp;</td>

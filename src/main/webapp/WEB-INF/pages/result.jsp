@@ -13,12 +13,12 @@
 	<table>
 		<tr>
 			<td><h2>
-					<a href="home"><button type="button">Home</button></a>
+					<a href="home"><button type="button" style="background-color: #00BFFF; color: white;">Home</button></a>
 				</h2>
 			<td>
 			<td><h2>
 					<a href="vhclRegUpdate?ownerID=${ownerID}"><button
-							type="button">Previous</button></a>
+							type="button" style="background-color: #FF7F50">Previous</button></a>
 				</h2></td>
 		<tr>
 	</table>

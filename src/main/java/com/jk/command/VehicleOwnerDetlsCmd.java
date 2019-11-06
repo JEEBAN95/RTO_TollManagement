@@ -10,14 +10,13 @@ import lombok.ToString;
 @Setter
 @ToString
 public class VehicleOwnerDetlsCmd {
-	
-	private int pid;
+
 	private String first_name;
 	private String last_name;
 	private String gender;
 	private String email;
-	private long  phno;
+	private Long  phno;
 	private Date dob;
-	private long ssn;	//adhar no
+	private Long ssn;
 	
 }//class

@@ -8,20 +8,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>Vehicle Registration Form</h3>
+	<h3>Vehicle Registration Form</h3>
 	<table>
-		<form:form action="vhclRegd?ownerID=${ownerID}" modelAttribute="vRegdModelCmd">
+		<form:form action="vhclRegd?ownerID=${ownerID}"
+			modelAttribute="vRegdModelCmd">
 			<tr>
-				<td>&nbsp;Regd_Date&nbsp;</td>
-				<td><form:input type="date" path="regdDate"/></td>
+				<td>&nbsp;Reg Date&nbsp;</td>
+				<td><form:input type="date" path="regdDate" /></td>
 			</tr>
 			<tr>
-				<td>&nbsp;Regd_Center&nbsp;</td>
+				<td>&nbsp;Reg Center&nbsp;</td>
 				<td><form:input path="regCenter" /></td>
 			</tr>
-			<tr><td ><Button type="submit">Submit</Button>
-			<a href="vhclDtlsUpd?ownerID=${ownerID}"><button type="button">previous</button></a>
-				</td></tr>
+			<tr>
+				<td colspan="2"><Button type="submit" style="background-color: #00BFFF; color: white;">Submit</Button> <a
+					href="vhclDtlsUpd?ownerID=${ownerID}"><button type="button"  style="background-color: #FF7F50">previous</button></a>
+					<button type="reset" style="background-color: #FF4500; color: white;">Reset</button></td>
+			</tr>
 		</form:form>
 	</table>
 </body>
