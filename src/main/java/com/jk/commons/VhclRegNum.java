@@ -4,11 +4,12 @@ import java.security.SecureRandom;
 
 public class VhclRegNum {
 	private static SecureRandom rndm1, rndm2;
-
+	
 	public static int getFirstGeneratedNum() {
 
 		rndm1 = new SecureRandom();
-		rndm1.setSeed(10000000000L);
+		long seed = 10000000;
+		rndm1.setSeed(seed);
 		int val = rndm1.nextInt();
 		return val;
 	}// getFirstGeneratedNum
@@ -16,7 +17,8 @@ public class VhclRegNum {
 	public static int getSecondGeneratedNum() {
 
 		rndm2 = new SecureRandom();
-		rndm2.setSeed(10000000000L);
+		long seed = 10000000;
+		rndm2.setSeed(seed);
 		int val = rndm2.nextInt();
 		return val;
 	}// getSecondGeneratedNum

@@ -35,18 +35,18 @@ public class RtoServiceImpl implements RtoService {
 	@Override
 
 	// save entity
-	public int insertVehicleOwner(VehicleOwnerDetlsDTO vhclOnrRegdDto) {
+	public VehicleOwnerDetlsEntity insertVehicleOwner(VehicleOwnerDetlsDTO vhclOnrRegdDto) {
 
 		VehicleOwnerDetlsEntity vhclOnrRegdEntity = null;
 		vhclOnrRegdEntity = new VehicleOwnerDetlsEntity();
 		BeanUtils.copyProperties(vhclOnrRegdDto, vhclOnrRegdEntity);
 		vhclOnrRegdEntity = vhclOnrRepo.save(vhclOnrRegdEntity);
-		return vhclOnrRegdEntity.getPid();
+		return vhclOnrRegdEntity;
 	}// insertVehicleOwner()
 
 	// save entity VehicleOwnerAdderssDetlsEnitity
 	@Override
-	public void insertVehicleOnwerAddr(VehicleOwnerAddressDetlsDTO vhclOnrAddRegDto, int ownerID) {
+	public VehicleOwnerAdderssDetlsEnitity insertVehicleOnwerAddr(VehicleOwnerAddressDetlsDTO vhclOnrAddRegDto, int ownerID) {
 
 		VehicleOwnerAdderssDetlsEnitity vhclOnrAddrRegdEntity = null;
 		vhclOnrAddrRegdEntity = new VehicleOwnerAdderssDetlsEnitity();
@@ -57,12 +57,13 @@ public class RtoServiceImpl implements RtoService {
 			vhclOnrAddrRegdEntity.setOwner(OptvhclOnrRegdEntity.get());
 			vhclOnrAddrRepo.save(vhclOnrAddrRegdEntity);
 		} // if
+		return vhclOnrAddrRegdEntity;
 	}// insertVehicleOnwerAddr()
 
 	// save entity VehicleRegdDetlsEntity
 	// create custom vehicle registration number
 	@Override
-	public void insertVehicleRegDetails(VehicleRegdDetlsDTO vhclRegdDto, int ownerID) {
+	public VehicleRegdDetlsEntity insertVehicleRegDetails(VehicleRegdDetlsDTO vhclRegdDto, int ownerID) {
 
 		VehicleRegdDetlsEntity vhclRegdDtlsEntity = null;
 		vhclRegdDtlsEntity = new VehicleRegdDetlsEntity();
@@ -72,24 +73,26 @@ public class RtoServiceImpl implements RtoService {
 		Optional<VehicleOwnerDetlsEntity> OptvhclOnrRegdEntity = vhclOnrRepo.findById(ownerID);
 		vhclRegdDtlsEntity.setVehiceRegdNum(vehiceRegdNum);
 
-		if (OptvhclOnrRegdEntity.get() != null) {
+		if (OptvhclOnrRegdEntity.isPresent()) {
 			vhclRegdDtlsEntity.setOwner(OptvhclOnrRegdEntity.get());
 			vhclRegdDtlsRepo.save(vhclRegdDtlsEntity);
 		} // if
+		return vhclRegdDtlsEntity;
 	}// insertVehicleRegDetails()
 
 	// save entity VehicleDetlsEntity
 	@Override
-	public void insertVehicleDetails(VehicleDetlsDTO vhclDtlsDto, int ownerID) {
+	public VehicleDetlsEntity insertVehicleDetails(VehicleDetlsDTO vhclDtlsDto, int ownerID) {
 
 		VehicleDetlsEntity vhclDtlsEntity = new VehicleDetlsEntity();
 		BeanUtils.copyProperties(vhclDtlsDto, vhclDtlsEntity);
 		Optional<VehicleOwnerDetlsEntity> OptvhclOnrRegdEntity = vhclOnrRepo.findById(ownerID);
 
-		if (OptvhclOnrRegdEntity.get() != null) {
+		if (OptvhclOnrRegdEntity.isPresent()) {
 			vhclDtlsEntity.setOwner(OptvhclOnrRegdEntity.get());
 			vhclDtlsRepo.save(vhclDtlsEntity);
 		} // if
+		return vhclDtlsEntity;
 	}// insertVehicleDetails
 
 	@Override
@@ -103,40 +106,41 @@ public class RtoServiceImpl implements RtoService {
 	}// getVehicleDtlsBy()
 
 	@Override
-	public VehicleOwnerAdderssDetlsEnitity getVehicleOnrAddrDtlsBy(int ownerID)  {
+	public VehicleOwnerAdderssDetlsEnitity getVehicleOnrAddrDtlsBy(int ownerID) {
 		return vhclOnrAddrRepo.findByOwnerIdFk(ownerID);
 	}// getVehicleOnrAddrDtlsBy()
 
 	@Override
-	public VehicleRegdDetlsEntity getVehicleRegdDtlsBy(int ownerID){
+	public VehicleRegdDetlsEntity getVehicleRegdDtlsBy(int ownerID) {
 		return vhclRegdDtlsRepo.findByOwnerIdFk(ownerID);
 	}// getVehicleRegdDtlsBy()
 
 	// update VehicleOwnerDetlsEntity
 	@Override
-	public void updateOwner(VehicleOwnerDetlsDTO vhclOnrRegdDto, int ownerID){
+	public  VehicleOwnerDetlsEntity  updateOwner(VehicleOwnerDetlsDTO vhclOnrRegdDto, int ownerID) {
 		VehicleOwnerDetlsEntity vhclOnrRegdEntity = vhclOnrRepo.findByPid(ownerID);
 		BeanUtils.copyProperties(vhclOnrRegdDto, vhclOnrRegdEntity);
-		vhclOnrRepo.save(vhclOnrRegdEntity);
+		return vhclOnrRepo.save(vhclOnrRegdEntity);
 	}// updateOwner()
 
 	// update VehicleOwnerAdderssDetlsEnitity
 	@Override
-	public void updateVhclOnrAddr(VehicleOwnerAddressDetlsDTO vhclOnrAddrRegdDTO, int id){
+	public VehicleOwnerAdderssDetlsEnitity updateVhclOnrAddr(VehicleOwnerAddressDetlsDTO vhclOnrAddrRegdDTO, int id) {
 
 		VehicleOwnerAdderssDetlsEnitity vhclOnrAddrDtlsEntity = vhclOnrAddrRepo.findByOwnerIdFk(id);
 		BeanUtils.copyProperties(vhclOnrAddrRegdDTO, vhclOnrAddrDtlsEntity);
 		Optional<VehicleOwnerDetlsEntity> optvhclOnrRegdEntity = vhclOnrRepo.findById(id);
 
-		if (optvhclOnrRegdEntity.get() != null) {
+		if (optvhclOnrRegdEntity.isPresent()) {
 			vhclOnrAddrDtlsEntity.setOwner(optvhclOnrRegdEntity.get());
 			vhclOnrAddrRepo.save(vhclOnrAddrDtlsEntity);
 		} // if
+		return vhclOnrAddrDtlsEntity;
 	}// updateVhclOnrAddr()
 
 	// update VehicleDetlsEntity
-	@Override 
-	public void updateVhclDtls(VehicleDetlsDTO vhclDtlsDto, int ownerID){
+	@Override
+	public VehicleDetlsEntity updateVhclDtls(VehicleDetlsDTO vhclDtlsDto, int ownerID) {
 
 		VehicleDetlsEntity vhclDtlsEntity = vhclDtlsRepo.findByOwnerIdFk(ownerID);
 		Optional<VehicleOwnerDetlsEntity> optvhclOnrRegdEntity = vhclOnrRepo.findById(ownerID);
@@ -146,18 +150,19 @@ public class RtoServiceImpl implements RtoService {
 			vhclDtlsEntity.setOwner(optvhclOnrRegdEntity.get());
 			vhclDtlsRepo.save(vhclDtlsEntity);
 		} // if
+		return vhclDtlsEntity;
 	}// updateVhclDtls()
 
 	// update VehicleRegdDetlsEntity
 	@Override
-	public void updateVhclRegdDtls(VehicleRegdDetlsDTO vhclRegdDto, int ownerID){
+	public VehicleRegdDetlsEntity updateVhclRegdDtls(VehicleRegdDetlsDTO vhclRegdDto, int ownerID) {
 
 		VehicleRegdDetlsEntity vhclRegdDtlsEntity = null;
 		vhclRegdDtlsEntity = vhclRegdDtlsRepo.findByOwnerIdFk(ownerID);
 		VehicleOwnerDetlsEntity vhclOnrDtlsEntity = vhclRegdDtlsEntity.getOwner();
 		BeanUtils.copyProperties(vhclRegdDto, vhclRegdDtlsEntity);
 		vhclRegdDtlsEntity.setOwner(vhclOnrDtlsEntity);
-		vhclRegdDtlsRepo.save(vhclRegdDtlsEntity);
+		return vhclRegdDtlsRepo.save(vhclRegdDtlsEntity);
 	}// updateVhclRegdDtls()
 
 	@Override

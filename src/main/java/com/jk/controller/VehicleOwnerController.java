@@ -48,12 +48,13 @@ public class VehicleOwnerController {
 	// redirect to next form
 	@PostMapping("/vhclOnrRegister")
 	public String saveOwnerRegdFormData(@Valid @ModelAttribute VehicleOwnerDetlsCmd vhclOnrRegdCmd, Model model) {
-
+		
+		
 		VehicleOwnerDetlsDTO vhclOnrRegdDto = null;
 		vhclOnrRegdDto = new VehicleOwnerDetlsDTO();
 		BeanUtils.copyProperties(vhclOnrRegdCmd, vhclOnrRegdDto);
-		int id = rtoService.insertVehicleOwner(vhclOnrRegdDto);
-		return "redirect:/vhclOnrAddReg?ownerID=" + id;
+		VehicleOwnerDetlsEntity vhclOnrDetlsEntity = rtoService.insertVehicleOwner(vhclOnrRegdDto);
+		return "redirect:/vhclOnrAddReg?ownerID=" + vhclOnrDetlsEntity.getPid();
 	}// saveOwnerRegdFormData
 
 	// use service

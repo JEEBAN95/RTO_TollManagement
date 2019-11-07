@@ -12,13 +12,13 @@ import com.jk.entity.VehicleRegdDetlsEntity;
 
 public interface RtoService {
 
-	public int insertVehicleOwner(VehicleOwnerDetlsDTO vhclOnrRegdDto);
+	public VehicleOwnerDetlsEntity insertVehicleOwner(VehicleOwnerDetlsDTO vhclOnrRegdDto);
 
-	public void insertVehicleOnwerAddr(VehicleOwnerAddressDetlsDTO vhclOnrAddRegDto, int ownerID);
+	public VehicleOwnerAdderssDetlsEnitity insertVehicleOnwerAddr(VehicleOwnerAddressDetlsDTO vhclOnrAddRegDto, int ownerID);
 
-	public void insertVehicleRegDetails(VehicleRegdDetlsDTO vhclRegdDto, int ownerID);
+	public VehicleRegdDetlsEntity insertVehicleRegDetails(VehicleRegdDetlsDTO vhclRegdDto, int ownerID);
 
-	void insertVehicleDetails(VehicleDetlsDTO vhclDtlsDto, int ownerID);
+	VehicleDetlsEntity insertVehicleDetails(VehicleDetlsDTO vhclDtlsDto, int ownerID);
 
 	public VehicleOwnerDetlsEntity getOwnerByID(int ownerID);
 
@@ -28,13 +28,13 @@ public interface RtoService {
 
 	public VehicleRegdDetlsEntity getVehicleRegdDtlsBy(int ownerID);
 
-	public void updateOwner(VehicleOwnerDetlsDTO vhclOnrRegdDto, int ownerID);
+	public VehicleOwnerDetlsEntity updateOwner(VehicleOwnerDetlsDTO vhclOnrRegdDto, int ownerID);
 
-	public void updateVhclOnrAddr(VehicleOwnerAddressDetlsDTO vhclOnrAddrRegdDTO, int ownerID);
+	public VehicleOwnerAdderssDetlsEnitity updateVhclOnrAddr(VehicleOwnerAddressDetlsDTO vhclOnrAddrRegdDTO, int ownerID);
 
-	public void updateVhclDtls(VehicleDetlsDTO vhclDtlsDto, int ownerID);
+	public VehicleDetlsEntity updateVhclDtls(VehicleDetlsDTO vhclDtlsDto, int ownerID);
 
-	public void updateVhclRegdDtls(VehicleRegdDetlsDTO vhclRegdDto, int ownerID); 
+	public VehicleRegdDetlsEntity updateVhclRegdDtls(VehicleRegdDetlsDTO vhclRegdDto, int ownerID); 
 	
 	public VehicleRegdDetlsEntity getVehicleRegdDtlsByVhclID(int vhclId);
 }

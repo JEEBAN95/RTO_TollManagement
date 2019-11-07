@@ -44,7 +44,7 @@
 				<td><form:errors path="last_name" /></td>
 			</tr>
 			<tr>
-				<td>Gender:</td>
+				<td>&nbsp;Gender&nbsp;</td>
 				<td>Male<form:radiobutton path="gender" value="Male" />
 					&nbsp;Female<form:radiobutton path="gender" value="Female" /></td>
 				<td><form:errors path="gender" /></td>
